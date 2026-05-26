@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Smoothie Ingredient Calculator</title>
+
+<style>
+body{
+    font-family:Arial;
+    background:#fff;
+    color:#000;
+    padding:20px;
+}
+
+.logo-container{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+#logoPreview{
+    max-width:300px;
+    max-height:150px;
+    display:block;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+}
+
+.card{
+    background:#f3f3f3;
+    border:1px solid #000;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:12px;
+}
+
+input{
+    margin-left:10px;
+    width:80px;
+    padding:5px;
+}
+
+button{
+    background:#000;
+    color:#fff;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    width:100%;
+    margin-top:10px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+th, td{
+    border:1px solid #000;
+    padding:8px;
+}
+
+th{
+    background:#000;
+    color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOGO -->
+<div class="logo-container">
+    <img src="logo.png" alt="Logo" id="logoPreview">
+</div>
+
+<h1>Smoothie Ingredient Calculator</h1>
+
+<div class="card">
+    <label>
+        Big Banana Energy
+        <input type="number" id="bananaEnergyQty" value="0">
+    </label>
+</div>
+
+<div class="card">
+    <label>
+        The Juicy Peach
+        <input type="number" id="juicyPeachQty" value="0">
+    </label>
+</div>
+
+<div class="card">
+    <label>
+        The Glow Job
+        <input type="number" id="glowJobQty" value="0">
+    </label>
+</div>
+
+<button onclick="calculate()">Calculate</button>
+
+<table>
+<thead>
+<tr>
+    <th>Ingredient</th>
+    <th>Total</th>
+</tr>
+</thead>
+
+<tbody id="results"></tbody>
+</table>
+
+<script>
+
+function calculate(){
+
+const bananaEnergy = parseInt(document.getElementById('bananaEnergyQty').value) || 0;
+const juicyPeach = parseInt(document.getElementById('juicyPeachQty').value) || 0;
+const glowJob = parseInt(document.getElementById('glowJobQty').value) || 0;
+
+const totals = {};
+
+function add(name, amount){
+    totals[name] = (totals[name] || 0) + amount;
+}
+
+// BIG BANANA ENERGY
+add("Milk", bananaEnergy * 1);
+add("Protein Powder", bananaEnergy * 1);
+add("Chocolate Chips", bananaEnergy * 1);
+add("Sugar", bananaEnergy * 1);
+add("Coffee Bean", bananaEnergy * 1);
+add("Nuts", bananaEnergy * 1);
+add("Bag of Ice", bananaEnergy * 1);
+add("Chopped Banana", bananaEnergy * 1);
+add("Yogurt", bananaEnergy * 1);
+
+// THE JUICY PEACH
+add("Milk", juicyPeach * 1);
+add("Chopped Banana", juicyPeach * 1);
+add("Peach", juicyPeach * 1);
+add("Yogurt", juicyPeach * 1);
+add("Bag of Ice", juicyPeach * 1);
+add("Chopped Mango", juicyPeach * 1);
+add("Chopped Strawberry", juicyPeach * 1);
+add("Sugar", juicyPeach * 1);
+
+// THE GLOW JOB
+add("Milk", glowJob * 1);
+add("Protein Powder", glowJob * 1);
+add("Chopped Kale", glowJob * 1);
+add("Matcha", glowJob * 1);
+add("Chopped Blueberry", glowJob * 1);
+add("Chopped Strawberry", glowJob * 1);
+add("Sugar", glowJob * 1);
+add("Yogurt", glowJob * 1);
+add("Bag of Ice", glowJob * 1);
+add("Chopped Banana", glowJob * 1);
+
+// DISPLAY RESULTS
+const tbody = document.getElementById('results');
+
+tbody.innerHTML = '';
+
+for(const [name, amount] of Object.entries(totals)){
+
+    if(amount > 0){
+
+        tbody.innerHTML += `
+        <tr>
+            <td>${name}</td>
+            <td>${amount}</td>
+        </tr>
+        `;
+    }
+}
+
+}
+
+</script>
+
+</body>
+</html>
